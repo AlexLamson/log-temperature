@@ -8,8 +8,8 @@ from Adafruit_BMP import BMP085
 from time import time as current_time
 
 
-SPREADSHEET_NAME = 'Quantified Self Data'
-WORKSHEET_NAME = 'Indoor Temp'
+SPREADSHEET_NAME = 'Your Spreadsheet Name Goes Here'
+WORKSHEET_NAME = 'Sheet1'
 
 CLIENT_SECRET_FILE = 'client_secret.json'
 
