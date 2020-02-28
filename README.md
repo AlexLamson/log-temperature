@@ -1,8 +1,8 @@
 # log-temperature
 Log indoor temperature / air pressure with a raspberry to a google sheet
 
-!["Graph of example data"](https://raw.githubusercontent.com/AlexLamson/log-temperature/master/graph.jpg "Graph of example data")
-
+<!-- ![Graph of example data](https://raw.githubusercontent.com/AlexLamson/log-temperature/master/graph.jpg) -->
+![Graph of example data](https://raw.github.com/AlexLamson/log-temperature/master/graph.jpg)
 
 ## Setup
 ### 1. Python configuration
