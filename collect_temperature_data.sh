@@ -1,1 +1,1 @@
-python3.6 loggger.py
+python3.6 logger.py
