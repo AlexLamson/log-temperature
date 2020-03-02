@@ -17,7 +17,7 @@ Install the required packages: `pip3.6 install gspread oauth2client`
 [Enable the I2C protocol feature in Raspberry Pi](https://raspberrypi.stackexchange.com/a/64310/64324)
 
 
-### 3. Make it possible to read from the temperature sensor
+### 3. Get access to Google Sheets API
 Follow the tutorial [here](https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html) to get API access to Google Sheets
 
 Put the resulting `client_secret.json` file in this directory
