@@ -64,7 +64,7 @@ while True:
             get_sheet().append_row(values=data_sample)
             print(f"[{timestamp}] appended {temperature_f}, {altitude_pa:.2f}")
         except Exception as e:
-            print("[{timestamp}] {e}")
+            print(f"[{timestamp}] {e}")
             print("Attempting again in 30 seconds")
             last_refresh = 0
             sleep(30)
