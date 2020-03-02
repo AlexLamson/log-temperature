@@ -1,2 +1,1 @@
-python3.6 update_spreadsheet.py
-
+python3.6 loggger.py
