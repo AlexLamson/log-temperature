@@ -20,12 +20,12 @@ sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
 
 # google expires your login after an hour
 last_refresh = 0
-sheet = None
+spreadsheet = None
 def get_sheet():
-    global last_refresh, sheet
+    global last_refresh, spreadsheet
 
     # if it's been 55 minutes since our last refresh, request a new auth token
-    if sheet is None or current_time() >= last_refresh + (60*55):
+    if spreadsheet is None or current_time() >= last_refresh + (60*55):
         print("regenerating auth token")
         last_refresh = current_time()
 
