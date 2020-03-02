@@ -14,6 +14,10 @@ WORKSHEET_NAME = 'Sheet1'
 CLIENT_SECRET_FILE = 'client_secret.json'
 
 
+# initialize the weather sensor
+sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
+
+
 # google expires your login after an hour
 last_refresh = 0
 sheet = None
@@ -22,6 +26,7 @@ def get_sheet():
 
     # if it's been 55 minutes since our last refresh, request a new auth token
     if sheet is None or current_time() >= last_refresh + (60*55):
+        print("regenerating auth token")
         last_refresh = current_time()
 
         # use creds to create a client to interact with the Google Drive API
@@ -40,9 +45,6 @@ def get_sheet():
         return worksheet
 
 
-# initialize the weather sensor
-sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
-
 # over and over, sample the atmosphere & append it to the google sheet
 while True:
     # get the current time
@@ -55,9 +57,19 @@ while True:
     temperature_f = float(f"{(temperature_c*9/5) + 32:.2f}")
 
     # append data to google spreadsheet
-    data_sample = [sheets_timestamp, temperature_f, temperature_c, altitude_pa]
-    print(f"[{timestamp}] appending {temperature_f}, {altitude_pa:.2f}")
-    get_sheet().append_row(values=data_sample)
+    success = False
+    while not success:
+        try:
+            data_sample = [sheets_timestamp, temperature_f, temperature_c, altitude_pa]
+            get_sheet().append_row(values=data_sample)
+            print(f"[{timestamp}] appended {temperature_f}, {altitude_pa:.2f}")
+        except Exception as e:
+            print("[{timestamp}] {e}")
+            print("Attempting again in 30 seconds")
+            last_refresh = 0
+            sleep(30)
+        else:
+            success = True
 
     # wait a bit before sending the next reading
     sleep(60)
