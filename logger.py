@@ -71,5 +71,9 @@ while True:
         else:
             success = True
 
-    # wait a bit before sending the next reading
-    sleep(60)
+    # until next minute before sending the next reading
+    delta = datetime.timedelta(minutes=1)
+    now = datetime.datetime.now()
+    next_minute = (now + delta).replace(microsecond=0, second=0)
+    wait_seconds = (next_minute - now).seconds
+    sleep(wait_seconds)
