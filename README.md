@@ -25,14 +25,10 @@ Open `logger.py` and set the `SPREADSHEET_NAME` variable to the title of your sp
 
 
 ### 4. Running the script
-Run `collect_temperature_data.sh` to start writing the current temperature and pressure to your Google sheet, once per minute.
+Run `python3.6 quick_logger.py` to get a temperature and pressure reading and log it to the google sheet.
 
 
-### 5. (Optional) Make the script run when the Raspberry Pi turns on
-We want it to start on boot, so we need to copy the script to `/etc/init.d`, check its permissions & register it to run at startup.
+### 5. Scheduling the script
+Run `crontab -e` to edit your crontab and add the following line (you may have to adjust the path based on where you cloned the repository). This will make the script run every 5 minutes.
 
-```
-sudo cp collect_temperature_data.sh /etc/init.d/collect_temperature_data.sh
-sudo chmod 755 /etc/init.d/collect_temperature_data.sh
-sudo update-rc.d collect_temperature_data.sh defaults
-```
+`*/5 * * * * /usr/local/bin/python3.6 /home/pi/Desktop/log-temperature/quick_logger.py /home/pi/Desktop/log-temperature/client_secret.json`
