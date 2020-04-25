@@ -3,7 +3,9 @@ Log temperature / air pressure to a Google Sheet with a Raspberry Pi
 
 ![Graph of example data](https://raw.github.com/AlexLamson/log-temperature/master/graph.jpg)
 
+
 ## Setup
+
 ### 1. Python configuration
 [Install Python 3.6](https://installvirtual.com/install-python-3-on-raspberry-pi-raspbian/) (Note: This step can take several hours to run)
 
@@ -21,14 +23,15 @@ Follow the tutorial [here](https://www.twilio.com/blog/2017/02/an-easy-way-to-re
 
 Put the resulting `client_secret.json` file in this directory
 
-Open `logger.py` and set the `SPREADSHEET_NAME` variable to the title of your spreadsheet. (You can also specify the worksheet tab name, if you're using a specific tab)
+Open `logger.py` and set the `SPREADSHEET_NAME` variable to the title of your spreadsheet.
+(You can also specify the worksheet tab name, if you're using a specific tab)
 
 
 ### 4. Running the script
-Run `python3.6 quick_logger.py` to get a temperature and pressure reading and log it to the google sheet.
+Run `python3.6 logger.py` to get a temperature and pressure reading and log it to the google sheet.
 
 
 ### 5. Scheduling the script
 Run `crontab -e` to edit your crontab and add the following line (you may have to adjust the path based on where you cloned the repository). This will make the script run every 5 minutes.
 
-`*/5 * * * * /usr/local/bin/python3.6 /home/pi/Desktop/log-temperature/quick_logger.py /home/pi/Desktop/log-temperature/client_secret.json`
+`*/5 * * * * /usr/local/bin/python3.6 /home/pi/log-temperature/logger.py /home/pi/log-temperature/client_secret.json`
